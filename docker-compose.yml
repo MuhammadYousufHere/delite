@@ -1,4 +1,4 @@
-version: '3'
+version: '3.8'
 
 services:
   neo4j:
@@ -17,7 +17,9 @@ services:
       - ./neo4j/conf:/conf
       - ./neo4j/plugins:/plugins
   api:
-    build: .
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
       - 4001:4001
     environment:
@@ -28,3 +30,5 @@ services:
       - neo4j
     depends_on:
       - neo4j
+    env_file:
+      - .env
