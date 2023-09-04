@@ -1,0 +1,20 @@
+type Account {
+  createdAt: DateTime!
+  email: String!
+  firstName: String!
+  githubId: String
+  id: String!
+  lastName: String!
+  password: String!
+  updatedAt: DateTime!
+}
+type Auth {
+  """
+  JWT Bearer token
+  """
+  token: String!
+}
+input ChangePasswordInput {
+  newPassword: String!
+  oldPassword: String!
+}
