@@ -17,7 +17,6 @@ export class GraphQLMiddlware {
     return formattedError
   }
   public getMiddlewareAppliedSchema() {
-    // @ts-expect-error iknowwell
     return applyMiddleware(this.schema, ...this.middlewareFunction)
   }
 }
