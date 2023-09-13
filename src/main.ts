@@ -3,6 +3,9 @@ import 'dotenv/config'
 import { NestFactory } from '@nestjs/core'
 import { AppModule } from './app.module'
 import { ValidationPipe } from '@nestjs/common'
+// import { PrismaClient } from '@prisma/client'
+
+// const client = new PrismaClient()
 
 const PORT = process.env.PORT
 
@@ -37,6 +40,16 @@ async function bootstrap() {
   }
 
   await app.listen(PORT)
+  // const user = await client.user.create({
+  //   data: {
+  //     email: 'lar@sim.com',
+  //     firstname: 'Laraib',
+  //     lastname: 'Hashim',
+  //     password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
+  //     role: 'User'
+  //   }
+  // })
+  // console.log(user)
 }
 
 bootstrap().catch((error) => {
