@@ -13,12 +13,14 @@ async function main() {
       firstname: 'Laraib',
       lastname: 'Hashim',
       password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
-      role: 'User',
+      role: 'USER',
       posts: {
         create: {
           title: 'Join us for Prisma Day 2019 in Berlin',
           content: 'https://www.prisma.io/day/',
-          published: true
+          published: true,
+          description: 'a detailed description',
+          slug: 'http://example.com/sample-post/'
         }
       }
     }
@@ -28,19 +30,23 @@ async function main() {
       email: 'bart@simpson.com',
       firstname: 'Babar',
       lastname: 'Azam',
-      role: 'Admin',
+      role: 'ADMIN',
       password: '$2b$10$EpRnTzVlqHNP0.fUbXUwSOyuiXe/QLSUG6xNekdHgTGmrpHEfIoxm', // secret42
       posts: {
         create: [
           {
             title: 'Subscribe to GraphQL Weekly for community news',
             content: 'https://graphqlweekly.com/',
-            published: true
+            published: true,
+            description: 'a detailed description',
+            slug: 'http://example.com/sample-post/'
           },
           {
             title: 'Follow Prisma on Twitter',
             content: 'https://twitter.com/prisma',
-            published: false
+            published: false,
+            description: 'a detailed description',
+            slug: 'http://example.com/sample-post/'
           }
         ]
       }

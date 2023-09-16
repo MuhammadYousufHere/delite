@@ -10,33 +10,57 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-
 model User {
-  id String @id @default(cuid())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  email     String   @unique
-  password  String
-  firstname String?
-  lastname  String?
-  posts     Post[]
-  role      Role
+  id           String    @id @default(cuid())
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  email        String    @unique
+  password     String
+  firstname    String?
+  lastname     String?
+  profileImage String?
+  bio          String?
+  posts        Post[]
+  comments     Comment[]
+  role         Role
+  followedBy User[]    @relation("UserFollows")
+  following  User[]    @relation("UserFollows")
 }
 
 model Post {
-  id String @id @default(cuid())
-  title String
-  content String
-  published Boolean
+  id          String    @id @default(cuid())
+  slug        String    @unique
+  title       String
+  description String
+  content     String
+  published   Boolean
+  createdAt   DateTime  @default(now())
+  updateAt    DateTime  @updatedAt
+  viewCount   Int       @default(0)
+  author      User      @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId    String
+  comments    Comment[]
+  tagList     Tag[]
+}
+
+model Comment {
+  id        String   @id @default(cuid())
   createdAt DateTime @default(now())
-  updateAt DateTime @updatedAt
-  viewCount Int @default(0)
-  author User @relation(fields: [authorId],references: [id])
-  authorId String
+  updatedAt DateTime @updatedAt
+  body      String
+  post      Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
+  postId    String
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  authorId  String
+}
+
+model Tag {
+  id    String @id @default(cuid())
+  name  String @unique
+  posts Post[]
 }
 
 enum Role {
-  Admin 
-  User
+  ADMIN
+  USER
 }
-
